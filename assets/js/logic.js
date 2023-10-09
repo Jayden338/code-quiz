@@ -21,7 +21,16 @@ function startQuiz() {
   questionsEl.removeAttribute("class"); 
 
   // start timer
+  timerId = setInterval(function () {
+    timerCount--;
+    timerElement.textContent = timerCount;
+    if (timerCount >= 0) {
+  }
  
+ if (timerCount === 0) { 
+  clearInterval(timer); 
+  }
+ }, 1000) 
 
   // show starting time
   timerEl.textContent = time;
