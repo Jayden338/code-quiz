@@ -47,7 +47,7 @@ function getQuestion() {
   titleEl.textContent = currentQuestion.title;
 
   // clear out any old question choices
-  choicesEl.innerHTML = "";
+  choicesEl.createElement = "";
 
   // loop over choices
   currentQuestion.choices.forEach(function(choice, i) {
