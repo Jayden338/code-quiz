@@ -47,16 +47,23 @@ function getQuestion() {
   titleEl.textContent = currentQuestion.title;
 
   // clear out any old question choices
-  choicesEl.createElement = "";
+  choicesEl.innerHTML = "";
 
   // loop over choices
+  currentQuestion.choices.forEach(function(choice, i) {
+    // create new button for each choice 
+    var choice = document.createElement("button");
+    choice.setAttribute("class", "choice");
+    choice.setAttribute("value", choice);
 
-    // create new button for each choice
- 
+    choice.textContent = i + 1 + ". " + choice;
+
+    // attach click event listener to each choice
+    choice.onclick = questionClick;
 
     // display on the page
-   
-  
+    choicesEl.appendChild(choice);
+  });
 }
 
 function questionClick(event) {
