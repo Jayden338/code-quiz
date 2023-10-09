@@ -19,34 +19,35 @@ function startQuiz() {
 
   // un-hide questions section
   questionsEl.removeAttribute("class"); 
-
+}
   // start timer
-  timerId = setInterval(function () {
-    timerCount--;
-    timerElement.textContent = timerCount;
-    if (timerCount >= 0) {
-  }
- 
- if (timerCount === 0) { 
-  clearInterval(timer); 
-  }
- }, 1000) 
+var timeLeft = 70;
+var elem = document.getElementById('time');
 
-  // show starting time
-  timerEl.textContent = time;
+var timerId = setInterval(countdown, 1000);
 
+function countdown() {
+  if (timeLeft == 0) {
+    clearTimeout(timerId);
+    endQuiz();
+  } else {
+    elem.innerHTML = timeLeft + ' seconds remaining';
+    timeLeft--;
+  }
+  
   getQuestion();
 }
 
 function getQuestion() {
   // get current question object from array
-  
+  var currentQuestion = question[currentQuestionIndex]; 
 
   // update title with current question
-  
+  var titleEl = document.getElementById("question-title"); 
+  titleEl.textContent = currentQuestion.title;
 
   // clear out any old question choices
-  
+  choicesEl.createElement = "";
 
   // loop over choices
 
