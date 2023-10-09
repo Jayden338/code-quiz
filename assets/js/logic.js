@@ -4,12 +4,12 @@ var time = questions.length * 15;
 var timerId;
 
 // variables to reference DOM elements
-var highscoreEl = document.querySelector("scores");
-var timerEl = document.querySelector("time"); 
-var startBtn = document.querySelector("start"); 
-var questionsEl = document.querySelector("questions"); 
-var choicesEl = document.querySelector("choices"); 
-var submitBtn = document.querySelector("submit"); 
+var highscoreEl = document.querySelector(".scores");
+var timerEl = document.querySelector(".time"); 
+var startBtn = document.querySelector(".start"); 
+var questionsEl = document.querySelector(".questions"); 
+var choicesEl = document.querySelector(".choices"); 
+var submitBtn = document.querySelector(".submit"); 
 
 
 function startQuiz() {
