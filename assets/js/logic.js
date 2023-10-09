@@ -14,16 +14,17 @@ var submitBtn = document.querySelector(".submit");
 
 function startQuiz() {
   // hide start screen
- 
+  var startScreenEl = document.getElementById("start-screen"); 
+  startScreenEl.setAttribute("class", "hide"); 
 
   // un-hide questions section
-  
+  questionsEl.removeAttribute("class"); 
 
   // start timer
  
 
   // show starting time
-  
+  timerEl.textContent = time;
 
   getQuestion();
 }
@@ -127,7 +128,7 @@ function checkForEnter(event) {
 
 
 // user clicks button to start quiz
-
+startBtn.addEventListener("click", startQuiz);
 
 // user clicks on element containing choices
 
