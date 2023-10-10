@@ -82,7 +82,8 @@ function questionClick(event) {
   // Check if the user's choice is correct
   if (userChoice === correctAnswer) {
     // Display "Correct" feedback
-    feedbackEl.textContent = "Correct";
+    feedbackEl.textContent = "Correct"; 
+    feedbackEl.textstyle.color = "black";
   } else {
     // Penalize time for incorrect answers
     time -= 5;
@@ -90,7 +91,8 @@ function questionClick(event) {
       time = 0;
     }
     // Display "Incorrect" feedback
-    feedbackEl.textContent = "Incorrect";
+    feedbackEl.textContent = "Incorrect"; 
+    feedbackEl.textstyle.color = "black";
   }
 
   // Move to the next question
@@ -128,21 +130,28 @@ function saveHighscore() {
 
 
   // make sure value wasn't empty
+ if (intitals !== "") { 
+
  
     // get saved scores from localstorage, or if not any, set to empty array
-   
+    var highscores =
+    JSON.parse(window.localStorage.getItem("highscores")) || [];
 
     // format new score object for current user
-    
+    var newScore = {
+      initials: initials, 
+      score: time, 
+    };
 
     // save to localstorage
-  
+    highscores.push(newScore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
 
     // redirect to next page
-   
+    window.location.href = "score.html";
   
 }
-
+}
 function checkForEnter(event) {
   // "13" represents the enter key
   if (event.key === 'Enter' || event.keyCode === 13) 
@@ -155,7 +164,5 @@ submitBtn.addEventListener("click", saveHighscore);
 // user clicks button to start quiz
 startBtn.addEventListener("click", startQuiz);
 
-// user clicks on element containing choices
-
-
-
+// user clicks on element containing choices 
+choicesEl.addEventListener("click", choicesEl)
