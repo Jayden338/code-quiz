@@ -4,12 +4,12 @@ var time = questions.length * 15;
 var timerId;
 
 // variables to reference DOM elements
-var highscoreEl = document.querySelector(".scores");
-var timerEl = document.querySelector(".time"); 
-var startBtn = document.querySelector(".start"); 
-var questionsEl = document.querySelector(".questions"); 
-var choicesEl = document.querySelector(".choices"); 
-var submitBtn = document.querySelector(".submit"); 
+var highscoreEl = document.querySelector("#scores");
+var timerEl = document.querySelector("#time"); 
+var startBtn = document.querySelector("#start"); 
+var questionsEl = document.querySelector("#questions"); 
+var choicesEl = document.querySelector("#choices"); 
+var submitBtn = document.querySelector("#submit"); 
 
 
 function startQuiz() {
@@ -19,39 +19,39 @@ function startQuiz() {
 
   // un-hide questions section
   questionsEl.removeAttribute("class"); 
-}
-  // start timer
-var timeLeft = 70;
-var elem = document.getElementById('time');
 
-var timerId = setInterval(countdown, 1000);
+  // start timer
+timerId = setInterval(countdown, 1000);
+countdown();
+}
 
 function countdown() {
-  if (timeLeft == 0) {
-    clearTimeout(timerId);
-    endQuiz();
-  } else {
-    elem.innerHTML = timeLeft + ' seconds remaining';
-    timeLeft--;
-  }
-  
+if (time <= 0) {
+  clearInterval(timerId);
+  endQuiz();
+} else {
+  // Display time remaining
+  timerEl.textContent = time + ' seconds remaining';
+  time--;
+}
+
   getQuestion();
 }
 
 function getQuestion() {
   // get current question object from array
-  var currentQuestion = question[currentQuestionIndex]; 
+  var currentQuestion = questions[currentQuestionIndex]; 
 
   // update title with current question
   var titleEl = document.getElementById("question-title"); 
   titleEl.textContent = currentQuestion.title;
 
   // clear out any old question choices
-  choicesEl.createElement = "";
+  choicesEl.textContent = ("questions");
 
   // loop over choices
   currentQuestion.choices.forEach(function(choice, i) {
-    // create new button for each choice 
+  // create new button for each choice 
     var choice = document.createElement("button");
     choice.setAttribute("class", "choice");
     choice.setAttribute("value", choice);
@@ -77,7 +77,7 @@ function questionClick(event) {
  
 
     // display new time on page
-
+timerEl.textContent = time;
 
     // play "wrong" sound effect
    
@@ -97,23 +97,27 @@ function questionClick(event) {
 
 function quizEnd() {
   // stop timer
-  
+  clearInterval(timerId);
 
   // show end screen
-
+var endScreenEl = document.getElementById("end-screen");
+endScreenEl.removeAttribute("class");
 
   // show final score
 
 
   // hide questions section
-
+questionsEl.setAttribute("class", "hide");
 }
 
 function clockTick() {
   // update time
-
+  time--; 
+  timerEl.textContent = time;
   // check if user ran out of time
-  
+  if (time <= 0) {
+    quizEnd();
+  }
 }
 
 function saveHighscore() {
@@ -138,7 +142,8 @@ function saveHighscore() {
 
 function checkForEnter(event) {
   // "13" represents the enter key
-
+  if (event.key === 'Enter' || event.keyCode === 13) 
+  saveHighscore
 }
 
 // user clicks button to submit initials
