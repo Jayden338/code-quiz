@@ -52,17 +52,18 @@ function getQuestion() {
   // loop over choices
   currentQuestion.choices.forEach(function(choice, i) {
   // create new button for each choice 
-    var choice = document.createElement("button");
-    choice.setAttribute("class", "choice");
-    choice.setAttribute("value", choice);
+    var choiceBtn = document.createElement("button");
+    choiceBtn.setAttribute("class", "choice");
+    choiceBtn.setAttribute("value", choice);
 
-    choice.textContent = i + 1 + ". " + choice;
+    choiceBtn.textContent = i + 1 + ". " + choice;
 
     // attach click event listener to each choice
-    choice.onclick = questionClick;
+    choiceBtn.addEventListener("click", questionClick);
+
 
     // display on the page
-    choicesEl.appendChild(choice);
+    choicesEl.appendChild(choiceBtn);
   });
 }
 
