@@ -68,32 +68,16 @@ function getQuestion() {
 }
 
 function questionClick(event) {
-  
-
-  // if the clicked element is not a choice button, do nothing.
- 
-  // check if user guessed wrong
-  
-    // penalize time
- 
-
-    // display new time on page
-timerEl.textContent = time;
-
-    // play "wrong" sound effect
-   
-
-  //else 
-    // play "right" sound effect
-   
-
-  // flash right/wrong feedback on page for half a second
-
+    
   // move to next question
-
+currentQuestionIndex++;
 
   // check if we've run out of questions
-
+if (currentQuestionIndex >= questionClick.length) {
+  endQuiz(); 
+}else {
+   getQuestion(); 
+  }
 }
 
 function quizEnd() {
